@@ -1,0 +1,54 @@
+<!-- <p>Today's item: {{item}}</p>-->
+
+<form class="example-form" [formGroup]="editForm" (ngSubmit)="edit_product(editForm)" style="margin-bottom:24%;">
+ 
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Product Name</mat-label>
+      <input matInput  formControlName="title" name="title" [value]="arr.title" >
+      <!-- // formControlName="name" -->
+    </mat-form-field>
+  
+    <div *ngIf="title?.touched && title?.invalid" class="alert alert-warning">{{ title?.errors|json}}</div>
+  
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Product Price</mat-label>
+      <input matInput formControlName="price" name="price" type="number" placeholder="1000$">
+    </mat-form-field>
+  
+    <div *ngIf="price?.touched && price?.invalid " class="alert alert-warning">{{ price?.errors|json}}</div>
+  
+  
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Product Brand</mat-label>
+      <input matInput formControlName="brand" name="brand" placeholder="HP">
+    </mat-form-field>
+  
+    <div *ngIf="brand?.touched && brand?.invalid" class="alert alert-warning">{{ brand?.errors|json}}</div>
+  
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Product Quantity</mat-label>
+      <input matInput formControlName="quantity" type="number" name="quantity" placeholder="Desktop HP G2">
+    </mat-form-field>
+  
+    <div *ngIf="quantity?.touched && quantity?.invalid"   class="alert alert-warning">{{ quantity?.errors|json}}</div>
+  
+  
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Product Details</mat-label>
+      <textarea matInput formControlName="details" name="details" placeholder="Ex. It makes me feel..."></textarea>
+    </mat-form-field>
+  
+    <div *ngIf="details?.touched && details?.invalid" class="alert alert-warning">{{ details?.errors|json}}</div>
+  
+    <input enctype="multipart/form-data" formControlName="img" name="img" type="file" class="file-upload" (change)="fileChng($event)">
+    <!-- onchange="console.log(event.target.files)"  -->
+    
+    <div *ngIf="img?.touched && img?.invalid" class="alert alert-warning">{{ img?.errors|json}}</div>
+  
+   
+  <!-- <div style="margin-left:10%;">{{registerForm.valid}}</div> -->
+  
+    <button type="submit" mat-fab class="btn98" [disabled]="editForm.invalid">Edit</button>
+  <!-- get msg sucess or not  -->
+  </form>
+  

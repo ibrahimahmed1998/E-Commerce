@@ -1,0 +1,59 @@
+<div class="container" style="margin-bottom:11.5%;">
+    <!-- {{obj.}} -->
+    <span class="p">Product Name: &nbsp;</span><span>{{obj.title}}</span> <br>
+    <span class="p">Brand: </span><span>{{obj.brand}}</span><br>
+    <span class="p">Sold: &nbsp;</span><span>{{obj.sold}} times</span><br>
+    <span class="p">Quantity: </span><span>{{obj.quantity}}</span><br>
+    <span class="p">Price: &nbsp;</span><span>{{obj.price}} $</span><br>
+
+    <span class="rate_num" title="Click To Add Rate">Rates:{{obj.rate}}
+        <a routerLink="#"><img class="rate_icon" src="assets/product_img/rate.png "></a>
+        <a routerLink="#"><img class="rate_icon" src="assets/product_img/rate.png "></a>
+        <a routerLink="#"><img class="rate_icon" src="assets/product_img/rate.png "></a>
+    </span> <br>
+
+    <img class="image" src="assets/{{obj.img}}" alt="{{obj.title}}">
+
+    <div class="action">
+        <!-- if auth it will be apper  -->
+        <a id="fun1" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add To Card</a>
+        <a id="fun1" routerLink="/edit_product/{{obj._id}}" type="button" class="btn btn-warning">Edit Product</a>
+        <a id="fun1" type="button" class="btn btn-danger" (click)="delete_product(obj._id)">Delete Product</a>
+    </div>
+
+    <span style="margin:3% 1.5% 3% 0%" class="p">Ratings & Reviews:</span>
+    <!-- /// for loooooooooooop here  -->
+    <button id="btn_add_comment" type="button" title="Click To Add Comment" class="btn btn-primary"
+        data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <img src="assets/product_img/addcomment.png" width="35px" height="35px" alt="Comment" srcset="">
+    </button>
+
+    <div style="margin-left:2%;" *ngFor="let comment of obj.comments">
+       <a title="click here to delete comment" id="commentid98" (click)="delete_comment(obj._id,comment._id)"> <span class="p">{{comment.userName}}: &nbsp;</span> <span>{{comment.comment}}</span></a> <br>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <b>Comment : </b> <input type="text" ngModel #newcomment="ngModel" name="newcomment" >
+                  &nbsp;  <b>Rate : </b> <input type="number" ngModel #rate="ngModel" name="rate" >
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a  (click)="add_comment(obj._id,newcomment,rate)" class="btn btn-primary">Reply</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   
+    <!-- product deatails in single show not in all  +++ sold + brand + quanitity  + comments -->
+</div>
